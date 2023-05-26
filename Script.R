@@ -189,6 +189,7 @@ dev.off()
 
 
 ##### V and V/J analysis by donor #####
+# Frequency Tables
 sheets <- excel_sheets(path = "Enriched_Motifs_byDonors.xlsx")
 
 for(i in sheets){
@@ -204,8 +205,15 @@ for(i in sheets){
 }
 
 
+# Heatmap
+Donor1_VJ <- read.csv("Donor1_Enriched_Motifs.csv")
+png("VJ_Usage_Overlap.png", width = 8, height = 10, units = "in", bg = "white", res = 300)
+pheatmap(table(Donor1_VJ$V, Donor1_VJ$J), color=colorRampPalette(c("blue","yellow", "red"))((100)), name = "Frequency",display_numbers = T, number_color = "black", main = "VJ Usage Overlap Frequency")                              
+dev.off()
 
-##### Circos Plots#####
+
+
+##### Circos Plots #####
 donor <- read_xlsx("Donor1_Enriched_Motifs.xlsx") %>% mutate(Donor= str_split(sample_name, "_", simplify = T)[,1])
 
 
@@ -241,7 +249,7 @@ dev.off()
 
 #####
 
-##### Cord Plots #####
+##### Chord Plots #####
 donor1 <- read_xlsx("donor1_filtered.xlsx") %>% mutate(`V Gene`=str_split(v_resolved, "\\*", simplify = T)[,1], `J Gene`=str_split(j_resolved, "\\*", simplify = T)[,1])%>% filter(`V Gene` %in% target_v_genes) 
 donor2 <- read_xlsx("donor2_filtered.xlsx")%>% mutate(`V Gene`=str_split(v_resolved, "\\*", simplify = T)[,1], `J Gene`=str_split(j_resolved, "\\*", simplify = T)[,1])%>% filter(`V Gene` %in% target_v_genes) 
 donor3 <- read_xlsx("donor3_filtered.xlsx")%>% mutate(`V Gene`=str_split(v_resolved, "\\*", simplify = T)[,1], `J Gene`=str_split(j_resolved, "\\*", simplify = T)[,1])%>% filter(`V Gene` %in% target_v_genes) 
