@@ -20,3 +20,10 @@ Common techniques and approaches used in TCR repertoire analysis:
 6. Repertoire comparison: TCR repertoire analysis can compare TCR repertoires between different individuals, tissues, or time points to understand changes in immune responses or disease progression.
 
 7. Functional analysis: TCR repertoire analysis can be integrated with functional assays to investigate the functionality of TCRs, including antigen specificity, cytokine production, and cytotoxicity.
+
+
+# GLIPH2 Differential Motif Analysis
+GLIPH2 (Grouping of Lymphocyte Interactions by Paratope Hotspots 2) is a computational tool that aids in grouping TCR sequences based on shared patterns in the complementarity-determining region 3 (CDR3), facilitating understanding of TCR diversity and antigen recognition patterns in immune responses. In this repository, I provide a code template for an in-depth characterization of T-cell repertoires. I utilize the output from GLIPH2 to perform downstream analysis, distinguishing clonally expanded motifs. GLIPH clusters are initially filtered for Fisher's score < 0.05. Clonally expanded and enriched motifs are identified by comparing the summed contribution scores of samples from each cluster (summed template frequency) using the poisson.test function for p-value statistics. The poisson.test function performs an exact test of a simple null hypothesis regarding the ratio between two rate parameters. The enriched motifs' log2-fold change and p-values are then plotted in volcano plots to identify expanded TCRs.
+
+With enriched motifs, it is possible to track their amino acid sequences within the repertoire. V gene and V-J pairing preferences across donors can be visualized as chord diagrams to identify similar preferences across donors. Additionally, shared motifs among different groups can be depicted in a network diagram or link plot, illustrating the frequency of contribution from each group. Here, I've provided a simple code template to make conventional chord plots as well as link plots.
+
